@@ -9,42 +9,75 @@ const clockElement = document.getElementById('clock');
 const slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
 
-// Validate required elements exist
-if (!clockElement) {
-    console.error('Error: Clock element not found');
-}
-if (slides.length === 0) {
-    console.error('Error: No slides found');
-}
-
 /**
- * Updates the clock display with current date and time
+ * Updates the clock display
  */
 function updateClock() {
-    if (clockElement) {
-        clockElement.textContent = new Date().toLocaleString();
-    }
+    if (!clockElement) return;
+
+    clockElement.textContent =
+        new Date().toLocaleString();
 }
 
 /**
- * Advances to the next slide
+ * Displays the next slide
  */
 function nextSlide() {
-    if (slides.length === 0) return;
 
-    // Remove active class from current slide
+    if (slides.length <= 1) {
+        return;
+    }
+
     slides[currentSlide].classList.remove('active');
 
-    // Move to next slide (use modulo for cleaner wrapping)
-    currentSlide = (currentSlide + 1) % slides.length;
+    currentSlide =
+        (currentSlide + 1) % slides.length;
 
-    // Add active class to new slide
     slides[currentSlide].classList.add('active');
 }
 
-// Start clock updates
-setInterval(updateClock, CONFIG.CLOCK_UPDATE_INTERVAL);
-updateClock(); // Call immediately to avoid 1-second delay
+/**
+ * Initialize slideshow
+ */
+function initialize() {
 
-// Start slideshow
-setInterval(nextSlide, CONFIG.SLIDE_DURATION);
+    if (!clockElement) {
+        console.warn('Clock element not found');
+    }
+
+    if (slides.length === 0) {
+        console.error('No slides found');
+        return;
+    }
+
+    // Ensure first slide is active
+    slides.forEach((slide, index) => {
+        slide.classList.toggle(
+            'active',
+            index === 0
+        );
+    });
+
+    updateClock();
+
+    setInterval(
+        updateClock,
+        CONFIG.CLOCK_UPDATE_INTERVAL
+    );
+
+    if (slides.length > 1) {
+        setInterval(
+            nextSlide,
+            CONFIG.SLIDE_DURATION
+        );
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener(
+        'DOMContentLoaded',
+        initialize
+    );
+} else {
+    initialize();
+}
