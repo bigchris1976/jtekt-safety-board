@@ -3,28 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JTEKT Digital Signage</title>
+    <title>Auto-Rotating Slides Carousel</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="clock" role="timer" aria-live="polite" aria-label="Current time"></div>
+    <div class="container">
+        <h1>Auto-Rotating Carousel</h1>
+        <p>Slides change every 10 seconds</p>
+        
+        <div class="carousel">
+            <div class="slides active">
+                <div class="slide-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h2>Slide 1</h2>
+                    <p>Welcome to the carousel!</p>
+                </div>
+            </div>
+            
+            <div class="slides">
+                <div class="slide-content" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <h2>Slide 2</h2>
+                    <p>This slide will appear after 10 seconds</p>
+                </div>
+            </div>
+            
+            <div class="slides">
+                <div class="slide-content" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h2>Slide 3</h2>
+                    <p>Slides rotate automatically</p>
+                </div>
+            </div>
+            
+            <div class="slides">
+                <div class="slide-content" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <h2>Slide 4</h2>
+                    <p>Add more slides as needed</p>
+                </div>
+            </div>
+            
+            <div class="slides">
+                <div class="slide-content" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <h2>Slide 5</h2>
+                    <p>Perfect for GitHub Pages!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="indicators">
+            <span class="dot active" onclick="currentSlideIndex(0)"></span>
+            <span class="dot" onclick="currentSlideIndex(1)"></span>
+            <span class="dot" onclick="currentSlideIndex(2)"></span>
+            <span class="dot" onclick="currentSlideIndex(3)"></span>
+            <span class="dot" onclick="currentSlideIndex(4)"></span>
+        </div>
+    </div>
     
-    <div class="slide active">
-        <img src="images/slide1.jpg" alt="Slide 1">
-    </div>
-    <div class="slide">
-        <img src="images/slide2.jpg" alt="Slide 2">
-    </div>
-    <div class="slide">
-        <img src="images/slide3.jpg" alt="Slide 3">
-    </div>
-    <div class="slide">
-        <img src="images/slide4.jpg" alt="Slide 4">
-    </div>
-    <div class="slide">
-        <img src="images/slide5.jpg" alt="Slide 5">
-    </div>
-
-    <script src="signage.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
