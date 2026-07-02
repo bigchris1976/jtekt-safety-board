@@ -1,30 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JTEKT Digital Signage</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Safety Slides</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <div id="clock" role="timer" aria-live="polite" aria-label="Current time"></div>
-    
-    <div class="slide active">
-        <img src="images/slide1.jpg" alt="Slide 1">
-    </div>
-    <div class="slide">
-        <img src="images/slide2.jpg" alt="Slide 2">
-    </div>
-    <div class="slide">
-        <img src="images/slide3.jpg" alt="Slide 3">
-    </div>
-    <div class="slide">
-        <img src="images/slide4.jpg" alt="Slide 4">
-    </div>
-    <div class="slide">
-        <img src="images/slide5.jpg" alt="Slide 5">
+  <main class="slideshow" id="slideshow" aria-roledescription="carousel">
+    <h1 class="sr-only">Safety Department Slides</h1>
+
+    <div class="slides" id="slides">
+      <section class="slide" data-title="Wear PPE" aria-hidden="false">
+        <div class="content">
+          <h2>Wear PPE</h2>
+          <p>Always wear the required personal protective equipment in designated areas.</p>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Report Near Misses" aria-hidden="true">
+        <div class="content">
+          <h2>Report Near Misses</h2>
+          <p>If you see something unsafe, report it so we can fix it before someone gets hurt.</p>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Fire Exits" aria-hidden="true">
+        <div class="content">
+          <h2>Know Fire Exits</h2>
+          <p>Keep exit routes clear and know the closest exit from your workspace.</p>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Lockout Tagout" aria-hidden="true">
+        <div class="content">
+          <h2>Lockout / Tagout</h2>
+          <p>Follow lockout/tagout procedures when servicing equipment.</p>
+        </div>
+      </section>
     </div>
 
-    <script src="signage.js"></script>
+    <div class="controls" aria-hidden="false">
+      <button id="prev" aria-label="Previous slide">⟨</button>
+      <button id="pause" aria-pressed="false">Pause</button>
+      <button id="next" aria-label="Next slide">⟩</button>
+    </div>
+
+    <div class="sr-only" id="live" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
