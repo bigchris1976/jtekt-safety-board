@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JTEKT Digital Signage</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+}
+
+.slide{
+    display:none;
+    width:100vw;
+    height:100vh;
+}
+
+.slide.active{
+    display:block;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+#clock{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:2px 2px 4px black;
+    z-index:1000;
+}
+</style>
+</head>
+
+<body>
+
+<div id="clock"></div>
+
+<div class="slide active">
+    1.jpg" alt="Slide 1">
+</div>
+
+<div class="slide">
+    images/slide2.jpgSlide 2">
+</div>
+
+<div class="slide">
+    images/slide3.jpg
+</div>
+
+<div class="slide">
+    4.jpg" alt="Slide 4">
+</div>
+
+<div class="slide">
+    images/slide5.jpgSlide 5">
+</div>
+
+<script>
+
+// Clock
+function updateClock() {
+    document.getElementById('clock').innerHTML =
+        new Date().toLocaleString();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// Slideshow
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function nextSlide() {
+
+    slides[currentSlide].classList.remove('active');
+
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+
+    slides[currentSlide].classList.add('active');
+}
+
+// Change slides every 10 seconds
+setInterval(nextSlide, 10000);
+
+</script>
+
+</body>
+</html> 
